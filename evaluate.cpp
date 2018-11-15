@@ -16,7 +16,13 @@
 using namespace std;
 
 
-
+void E::writeToFile(string line, string filename) {
+ofstream myFile;
+line+="\n";
+myFile.open(filename, std::ofstream::out | std::ofstream::app);
+myFile << line;
+myFile.close();
+}
 
 //Add calculated variables and values to the map
 void E::mapEvaluation(string filename, string outputFile){

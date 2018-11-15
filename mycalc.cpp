@@ -4,7 +4,7 @@
 using namespace std;
 
 int main(int count, char * args[]) {
-
+    
     E e;
     string inputFile = "";
     string outputFile = "";
@@ -18,16 +18,15 @@ int main(int count, char * args[]) {
     }
     //remind user of the way to invocate the application
     if (inputFile == "" || outputFile == "") {
-        cout << "Usage ./mycalc -i <inputfile> -o <outputfile>>" << endl;
+       cout << "Usage ./mycalc -i <inputfile> -o <outputfile>>" << endl;
         return -1;
     }
     //print out names of the input and output textfiles
     cout << "Input file is " << inputFile << endl;
     cout << "Output file is " << outputFile << endl;
 
-    e.mapEvaluation(inputFile, outputFile);
+    e.mapEvaluation(inputFile,outputFile);
 }
-
 
 
 
