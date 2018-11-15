@@ -6,8 +6,8 @@ using namespace std;
 int main(int count, char * args[]) {
     
     E e;
-    string inputFile = "";
-    string outputFile = "";
+    string inputFile = ""; //string for the input file name
+    string outputFile = ""; //string for the output file name
     
     //take as parameters names of the input and output textfiles
     for (int i = 1; i < count; i++) {
@@ -25,7 +25,7 @@ int main(int count, char * args[]) {
     cout << "Input file is " << inputFile << endl;
     cout << "Output file is " << outputFile << endl;
 
-    e.mapEvaluation(inputFile,outputFile);
+    e.mapEvaluation(inputFile,outputFile); //Function thats starts the process of mapping, tokenizing, cleaning and evaluating
 }
 
 
