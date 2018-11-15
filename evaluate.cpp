@@ -16,7 +16,7 @@
 using namespace std;
 
 
-void E::writeToFile(string line, string filename) {
+void E::writeToFile(string line, string filename) { //function to append a line to the output file
 ofstream myFile;
 line+="\n";
 myFile.open(filename, std::ofstream::out | std::ofstream::app);
@@ -29,15 +29,15 @@ void E::mapEvaluation(string filename, string outputFile){
     
     ifstream file;
     map<string, float> variableMap;  
-    string afterEquals;
-    string variableName;
-    int lineNum;
-    string line;
-    string cleanExpression;
+    string afterEquals; //The part of the input that is after the equal sign
+    string variableName; //The variable name in the input that is before the equal sign
+    int lineNum; //Number of lines in output file
+    string line; //The line string
+    string cleanExpression; //The input line, cleaned
     
     //get number of lines
     file.open(filename);
-    while (getline(file, line)) {
+    while (getline(file, line)) { // while loop to count lines in input file
         if (line!=""){
             lineNum++;
         }
@@ -46,7 +46,7 @@ void E::mapEvaluation(string filename, string outputFile){
    int k=0;
     int fileSize=0;
     while((variableMap.size()!=lineNum)&&(fileSize!=lineNum)) {//while not all variables are solved
-        k++; if(k==1000){break;}
+        /* */ k++; if(k==1000){break;} //test
 
         file.open(filename);
         string lineString;
@@ -67,18 +67,18 @@ void E::mapEvaluation(string filename, string outputFile){
                 //cout <<"clean expression is balanced " << cleanExpression << endl;
             
                 //update variables with new values
-                if(!variableMap.empty()) {
-                    map<string, float>::iterator it = variableMap.begin();
-                    while (it != variableMap.end()){
+                if(!variableMap.empty()) { //if the map is noy empty
+                    map<string, float>::iterator it = variableMap.begin(); //map iterator
+                    while (it != variableMap.end()){ //while the iterator has not reached end of map
                         
-                        cleanExpression  = ReplaceString(cleanExpression, it->first, to_string(it->second));
+                        cleanExpression  = ReplaceString(cleanExpression, it->first, to_string(it->second)); //replacing map variables with vars from input file
                         //cout<<"result of replacement, cleanExpression = "<<cleanExpression<<endl;
                         it++;
                     }
                 }
                 
                 //postfix calculation
-                if((not isVariablePresent(cleanExpression)) and (isOperatorPresent(cleanExpression))) { 
+                if((not isVariablePresent(cleanExpression)) and (isOperatorPresent(cleanExpression))) {// if no variable but there is operator
                     //cout << variableName << " is being evaluated" << endl;
                     
                     vector<string> v = tokenize(cleanExpression);//tokenize the expression into vector 
@@ -97,7 +97,7 @@ void E::mapEvaluation(string filename, string outputFile){
                 } 
                 
                 //direct value
-                else if((not isVariablePresent(cleanExpression)) and (not isOperatorPresent(cleanExpression))) { 
+                else if((not isVariablePresent(cleanExpression)) and (not isOperatorPresent(cleanExpression))) { //if no variable and no operator
                      string s = variableName + " = " + cleanExpression + ";";
                      if(fileSize<lineNum) {
                // writeToFile(s,outputFile);
@@ -124,7 +124,7 @@ void E::mapEvaluation(string filename, string outputFile){
     {
 
         string s = it2->first + " = " + to_string(it2->second) + ";";
-                writeToFile(s,outputFile);
+                writeToFile(s,outputFile); //write to output file
                     
         it2++;
 
@@ -143,7 +143,7 @@ void E::mapEvaluation(string filename, string outputFile){
 
 
 
-float E::eval(float x1, float x2, string sign) { 
+float E::eval(float x1, float x2, string sign) {  
 
     if (sign == "+")//addition
         return x1 + x2;
